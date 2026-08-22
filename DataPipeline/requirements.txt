@@ -1,0 +1,14 @@
+# Core data-engineering stack (MASTER_ARCHITECTURE.md section 3)
+pandas>=2.2
+numpy>=1.26
+requests>=2.32
+scikit-learn>=1.5
+scipy>=1.13
+matplotlib>=3.9
+
+# F1-specific source
+fastf1>=3.4
+
+# Notebooks (DataPipeline/notebooks/) and testing (DataPipeline/tests/)
+jupyter>=1.0
+pytest>=8.0

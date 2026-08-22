@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--
+      net8.0: this project only ever runs standalone (dotnet test, CI),
+      never inside Unity, so it can target a modern runtime instead of
+      being constrained to netstandard2.1 like RaceManager.Simulation.
+    -->
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      NUnit, not xUnit or MSTest: Unity's own Test Framework package is
+      built on NUnit, so tests written here can later run unmodified
+      inside Unity's Test Runner too, if that's ever wanted, without a
+      rewrite. See MASTER_ARCHITECTURE.md section 7.2.
+    -->
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="NUnit" Version="4.2.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
+    <PackageReference Include="NUnit.Analyzers" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RaceManager.Simulation\RaceManager.Simulation.csproj" />
+  </ItemGroup>
+
+</Project>

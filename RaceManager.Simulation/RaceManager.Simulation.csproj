@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--
+      netstandard2.1 + C# 9: the broadly-compatible target Unity 6's
+      scripting runtime can consume, whether this project ends up
+      referenced into Unity as source or as a built DLL. Bump this only
+      after confirming your installed Unity 6 sub-version supports a
+      newer C# language version.
+    -->
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <RootNamespace>RaceManager.Simulation</RootNamespace>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+</Project>

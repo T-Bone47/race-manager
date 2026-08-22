@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  simulation-tests:
+    name: C# Simulation Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore RaceManager.sln
+
+      - name: Build
+        run: dotnet build RaceManager.sln --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test RaceManager.sln --no-build --configuration Release --verbosity normal
+
+  data-pipeline-tests:
+    name: Python Data Pipeline Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r DataPipeline/requirements.txt
+
+      - name: Run tests
+        run: pytest -v
