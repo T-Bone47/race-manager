@@ -9,6 +9,9 @@ matplotlib>=3.9
 # F1-specific source
 fastf1>=3.4
 
+# Canonical schema validation (Phase 1) — see DataPipeline/schema/canonical.py
+pydantic>=2.5
+
 # Notebooks (DataPipeline/notebooks/) and testing (DataPipeline/tests/)
 jupyter>=1.0
 pytest>=8.0

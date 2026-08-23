@@ -4,17 +4,15 @@ A data-driven motorsport team-management and race-strategy simulator built with 
 
 The authoritative spec for this project is [`Documentation/MASTER_ARCHITECTURE.md`](Documentation/MASTER_ARCHITECTURE.md). Read it before touching anything below.
 
-## Status: Phase 0 — Project Setup
+## Status: Phase 1 — Data Pipeline (in progress)
 
-This repo currently contains the Phase 0 scaffold only:
-
-- [x] Repository structure
-- [x] `Documentation/MASTER_ARCHITECTURE.md` seeded
-- [x] `DataPipeline/` Python scaffold with one working (mocked) adapter test
-- [x] `RaceManager.Simulation` — a Unity-independent C# class library, headlessly testable, proving MASTER_ARCHITECTURE.md section 7.2's "testable without opening a Unity scene" principle
-- [x] CI workflow running both test suites on push
+- [x] Phase 0: repository structure, `Documentation/MASTER_ARCHITECTURE.md` seeded
+- [x] Phase 0: `RaceManager.Simulation` — a Unity-independent C# class library, headlessly testable, proving MASTER_ARCHITECTURE.md section 7.2's "testable without opening a Unity scene" principle
+- [x] Phase 0: CI workflow running both test suites on push
+- [x] Phase 1: canonical schema (`DataPipeline/schema/canonical.py`, `Documentation/DATA_SCHEMA.md`) — 10 entities, pydantic-validated
+- [x] Phase 1: Jolpica adapter covers drivers, constructors, circuits, season schedule + sessions, race results, laps, pit stops — all offline-tested (27 tests passing)
+- [ ] Phase 1: tyres / weather — schema defined, unpopulated until a FastF1/OpenF1 adapter exists
 - [ ] Actual Unity 6 project (must be created locally — see `UnityProject/README.md`)
-- [ ] Phase 1 real data pipeline (currently one adapter, one endpoint, as a proof of pattern only)
 - [ ] Phase 2 real simulation core (the C# code here today is a determinism scaffold, not the pace/tyre/strategy model)
 
 ## Layout
@@ -23,6 +21,9 @@ This repo currently contains the Phase 0 scaffold only:
 race-manager/
 ├── Documentation/            architecture & design docs
 ├── DataPipeline/             Python: external data → canonical schema
+│   ├── schema/               canonical.py — the 10 Phase 1 entity types
+│   ├── sources/               per-source adapters (jolpica_adapter.py)
+│   └── tests/
 ├── RaceManager.Simulation/            C# class library: deterministic sim core (Unity-independent)
 ├── RaceManager.Simulation.Tests/      NUnit tests for the above
 ├── UnityProject/              placeholder — create the actual Unity 6 project here
